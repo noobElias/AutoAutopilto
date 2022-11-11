@@ -9,7 +9,7 @@ A demo that can be deployed in any tenant. Meant to easily enroll unknown client
 ######  Function 1: AddAutopilotObject:
   The function takes a json from the client, checks it for serialnumber and hardwarehash and posts it to the graph-api, if all is good it should return the output from     graph to the client 
   
-######  Function 2: PingAutopilot: 
+######  Function 2: [PingAutopilot](https://github.com/noobElias/AutoAutopilto/blob/main/PingAutopilot.ps1): 
   Autopilot is sometimes slow to register and so its usefull for the client to know that its been properly enrolled (as of rigth now the check only asks if the object     exists in autopilot but it can easily be changed to check that a profile has been added
 ###### [ClientSide script](https://github.com/noobElias/AutoAutopilto/blob/main/ClientSide.ps1): 
   The client that is to be enrolled in autopilot can run the premade enrollment script. This script first takes the uris of the function-apps as variables and an optional variable for grouptag.
