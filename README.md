@@ -6,7 +6,7 @@ A demo that can be deployed in any tenant. Meant to easily enroll unknown client
 
   To implement  one needs to simply deploy the two functions (Maybe we make bicep later) into ones tenant, set the function app up with the appropriate permission (in this case "DeviceManagementServiceConfig.ReadWrite.All" is needed) and deploy the clientside script.
 
-######  Function 1: AddAutopilotObject:
+######  Function 1: ######  Function 2: [AddAutopilotObject](https://github.com/noobElias/AutoAutopilto/blob/main/AddAutopilotObject): 
   The function takes a json from the client, checks it for serialnumber and hardwarehash and posts it to the graph-api, if all is good it should return the output from     graph to the client 
   
 ######  Function 2: [PingAutopilot](https://github.com/noobElias/AutoAutopilto/blob/main/PingAutopilot.ps1): 
