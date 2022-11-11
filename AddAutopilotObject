@@ -1,0 +1,36 @@
+using namespace System.Net
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+if(($Request.body.'Device Serial Number' -eq $null) -or ($Request.body.'Device Serial Number' -eq '')  -or ($Request.body.'Hardware Hash' -eq $null) -or ($Request.body.'Hardware Hash' -eq '')){
+    $res = "Her skjedde det noe fishy..."
+    Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+        StatusCode = [HttpStatusCode]::OK
+        Body = $res
+    })
+    exit 1 
+}
+elseif(($Request.body.'Device Serial Number' -ne $null) -and ($Request.body.'Device Serial Number' -ne '') -and ($Request.body.'Hardware Hash' -ne $null) -and ($Request.body.'Hardware Hash' -ne '')){
+    $token = (Get-AzAccessToken -ResourceUrl "https://graph.microsoft.com").Token
+    $json = [ordered]@{
+            '@odata.type' = '#microsoft.graph.importedWindowsAutopilotDeviceIdentity'
+            'groupTag' = if ($Request.body.'Group Tag') { "$($Request.body.'Group Tag')" } else { "" }
+            'serialNumber' = "$($Request.body.'Device Serial Number')"
+            'productKey' = if ($Request.body.'Windows Product ID') { "$($Request.body.'Windows Product ID')" } else { "" }
+            'hardwareIdentifier' = "$($Request.body.'Hardware Hash')"
+            'state' = @{
+                '@odata.type' = 'microsoft.graph.importedWindowsAutopilotDeviceIdentityState'
+                'deviceImportStatus' = 'pending'
+                'deviceRegistrationId' = ''
+                'deviceErrorCode' = 0
+                'deviceErrorName' = ''
+            }
+        }
+
+    $body = $json | ConvertTo-Json
+    $res = Invoke-RestMethod -Method Post -Uri 'https://graph.microsoft.com/beta/deviceManagement/importedWindowsAutopilotDeviceIdentities' -Body $body -Headers @{Authorization = "$token" } -ContentType "application/json"
+    Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+        StatusCode = [HttpStatusCode]::OK
+        Body = $res
+    })
+}
