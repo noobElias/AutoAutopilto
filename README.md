@@ -16,4 +16,4 @@ A demo that can be deployed in any tenant. Meant to easily enroll unknown client
   It then installs the "getWindowsAutopilotInfo" script to extract hardwarehash. The hardwarehash gets posted to the "AddAutopilotObject" function wich returns status from graph.
   Afterwords the script waits for the "PingAutopilot" function for confirmation that the object exsist in autopilot before it exits (the default sleep-period i use is 180 secounds as autopilot sometimes is a bit slow to update)
   
-  
+![This is an image](https://github.com/noobElias/AutoAutopilto/blob/main/logo.png)
