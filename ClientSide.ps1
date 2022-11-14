@@ -41,22 +41,16 @@ $json = @{
     
 } | ConvertTo-Json
 
-function recurseping{
-    param($pinguri, $json)
+$apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
+
+while($apres.'@odata.count'  -eq 0){
+    Write-Host "ingen objekt, tar en blund"
+    Start-Sleep -Seconds 180
     $apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
-    if($apres.'@odata.count'  -eq 0){
-        Write-Host "ingen objekt, tar en blund"
-        Start-Sleep -Seconds 180
-        recurseping -pinguri $pinguri -json $json
 
-    }
-    else{
-        return $apres.value
-    }
+}
+if($apres.'@odata.count' -eq 1){
+    $apres.value
+
 }
 
-#her kan man også se etter assignmentstatus. Objektet kan finnes i autopilot uten at en profil er tildelt! 
-#ping autopilot to know when object is present
-if(recurseping -pinguri $pinguri -json $json){
-    Write-Host "done and dusted som de sier" 
-}
