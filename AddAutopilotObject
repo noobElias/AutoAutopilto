@@ -3,7 +3,7 @@ using namespace System.Net
 param($Request, $TriggerMetadata)
 
 if(($Request.body.'Device Serial Number' -eq $null) -or ($Request.body.'Device Serial Number' -eq '')  -or ($Request.body.'Hardware Hash' -eq $null) -or ($Request.body.'Hardware Hash' -eq '')){
-    $res = "Her skjedde det noe fishy..."
+    $res = "Something went wrong.. either serialnumber or hardwarehash was not included"
     Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
         StatusCode = [HttpStatusCode]::OK
         Body = $res
