@@ -23,6 +23,17 @@ else{
     $hwid = Get-WindowsAutopilotInfo
 }
 
+$json = @{
+    serialNumber = $hwid.'Device Serial Number'
+    
+} | ConvertTo-Json
+
+$apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
+if($apres.'@odata.count'  -eq 1){
+    Write-Host "Device allready enrolled"
+    exit 0
+}
+
 #convert output to json
 $hwid = $hwid | ConvertTo-Json
 
