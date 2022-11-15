@@ -23,6 +23,7 @@ else{
     $hwid = Get-WindowsAutopilotInfo
 }
 
+#Check to see if device is already in autopilot, this can be commented out if not needed
 $json = @{
     serialNumber = $hwid.'Device Serial Number'
     
