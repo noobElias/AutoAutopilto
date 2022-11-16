@@ -47,12 +47,7 @@ else{
     Write-Error "HWID mangler, noe er galt..."
 }
 
-#json for pinging autopilto
-$json = @{
-    serialNumber = $res.serialNumber
-    
-} | ConvertTo-Json
-
+#Ping autopilot to find if device is there
 $apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
 
 while($apres.'@odata.count'  -eq 0){
