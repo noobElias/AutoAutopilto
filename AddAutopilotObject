@@ -29,6 +29,7 @@ elseif(($Request.body.'Device Serial Number' -ne $null) -and ($Request.body.'Dev
 
     $body = $json | ConvertTo-Json
     $res = Invoke-RestMethod -Method Post -Uri 'https://graph.microsoft.com/beta/deviceManagement/importedWindowsAutopilotDeviceIdentities' -Body $body -Headers @{Authorization = "$token" } -ContentType "application/json"
+    Write-Output $res #writes output to log
     Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
         StatusCode = [HttpStatusCode]::OK
         Body = $res
