@@ -17,7 +17,7 @@ A demo that can be deployed in any tenant. Meant to easily enroll unknown client
   It then installs the "getWindowsAutopilotInfo" script to extract hardwarehash. The hardwarehash gets posted to the "AddAutopilotObject" function wich returns status from graph.
   Afterwords the script waits for the "PingAutopilot" function for confirmation that the object exsist in autopilot before it exits (the default sleep-period i use is 180 secounds as autopilot sometimes is a bit slow to update)
   
-##Errors!! 
+## Errors!! 
 
 ###### autopiloterror 806  –  ZtdDeviceAlreadyAssigned: 
   During the testphase i enrolled the same VM a bunch of times but suddenly it would not enroll anymore. Both the AddAutopilotObject function and the graph-api   itself returned no errors but as i tried to upload the CSV for the device manualy it returned error 806, i found this blog here https://www.mdmandgpanswers.com/blogs/view-blog/how-i-scraped-a-device-out-of-autopilot-the-hard-way but i did not have the exact same experience, my device did not apear in autopilot at all, but i did find it in Microsoft store for business and after deleting it from there autopilot enrollment functioned as expected again. 
