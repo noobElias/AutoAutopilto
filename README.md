@@ -23,7 +23,6 @@ A demo that can be deployed in any tenant. Meant to easily enroll unknown client
   During the testphase i enrolled the same VM a bunch of times but suddenly it would not enroll anymore. Both the AddAutopilotObject function and the graph-api   itself returned no errors but as i tried to upload the CSV for the device manualy it returned error 806, i found this blog [here](https://www.mdmandgpanswers.com/blogs/view-blog/how-i-scraped-a-device-out-of-autopilot-the-hard-way) but i did not have the exact same experience, my device did not apear in autopilot at all, but i did find it in Microsoft store for business and after deleting it from there autopilot enrollment functioned as expected again. 
 ## Thanks!!
 
-###### Eldar!! 
-[Eldars blog](https://eldar.cloud/2021/05/03/azure-logic-app-import-device-to-autopilot/)
+###### [Eldar](https://eldar.cloud/2021/05/03/azure-logic-app-import-device-to-autopilot/)
 The idea for this project originates in a design Eldar came up with while i was working with him!
 Check out his artikle on the link above :)
