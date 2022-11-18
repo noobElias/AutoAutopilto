@@ -24,5 +24,6 @@ A demo that can be deployed in any tenant. Meant to easily enroll unknown client
 ## Thanks!!
 
 ###### Eldar!! 
-[Eldars blog](https://eldar.cloud)
+[Eldars blog](https://eldar.cloud/2021/05/03/azure-logic-app-import-device-to-autopilot/)
 The idea for this project originates in a design Eldar came up with while i was working with him!
+Check out his artikle on the link above :)
