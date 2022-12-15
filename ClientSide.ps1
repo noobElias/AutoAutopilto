@@ -6,6 +6,7 @@ $uri = '' # Function app URL for enrolling into autopilto
 $GroupTag = '' #optional autopilot grouptag 
 $pinguri = '' # function app URL for pinging autopilot
 
+Install-PackageProvider -Name 'NuGet' -Force
 #install "getautopiltoinfo" script to get the hardwarehash
 if(-not(test-path "C:\HWID")){
     New-Item -Type Directory -Path "C:\HWID"
@@ -13,7 +14,7 @@ if(-not(test-path "C:\HWID")){
 Set-Location -Path "C:\HWID"
 $env:Path += ";C:\Program Files\WindowsPowerShell\Scripts"
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned -Force
-Install-Script -Name Get-WindowsAutopilotInfo
+Install-Script -Name Get-WindowsAutopilotInfo -Force
 
 #if $grouptag variable is defined include it 
 if($GroupTag){
