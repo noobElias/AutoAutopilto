@@ -51,14 +51,14 @@ else{
 #Ping autopilot to find if device is there
 $apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
 
-while($apres.'@odata.count'  -eq 0){
+
+while($apres.value.deploymentProfileAssignmentStatus -notmatch 'assigned'){
     Write-Host "ingen objekt, tar en blund"
-    Start-Sleep -Seconds 180
+    Start-Sleep -Seconds 270
     $apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
 
 }
-if($apres.'@odata.count' -eq 1){
+if($apres.value.deploymentProfileAssignmentStatus -match 'assigned'){
     $apres.value
-
 }
 
