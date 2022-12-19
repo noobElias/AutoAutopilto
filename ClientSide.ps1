@@ -52,7 +52,7 @@ else{
 $apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
 
 
-while($apres.value.deploymentProfileAssignmentStatus -notmatch 'assigned'){
+while($apres.value.deploymentProfileAssignmentStatus -notmatch 'assigned' -or $apres.value.deploymentProfileAssignmentStatus -eq 'notAssigned'){
     Write-Host "ingen objekt, tar en blund"
     Start-Sleep -Seconds 270
     $apres = Invoke-RestMethod -Method Post -Uri $pinguri -Body $json -ContentType "application/json"
